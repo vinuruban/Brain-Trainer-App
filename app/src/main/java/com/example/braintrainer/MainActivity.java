@@ -76,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
         int randomAns3 = rand.nextInt(40) + 1;
         int randomAns4 = rand.nextInt(40) + 1;
 
+        //in case the randomly generated numbers are equal to correctAnswer, regenerated random numbers
+        if (randomAns2 == correctAnswer) {
+            randomAns2 = rand.nextInt(40) + 1;
+        } else if (randomAns3 == correctAnswer) {
+            randomAns3 = rand.nextInt(40) + 1;
+        } else if (randomAns4 == correctAnswer) {
+            randomAns4 = rand.nextInt(40) + 1;
+        }
 
         if (gridElements[0] == 1) {
             answerView1.setText("" + correctAnswer);
@@ -88,16 +96,19 @@ public class MainActivity extends AppCompatActivity {
             answerView2.setText("" + correctAnswer);
             answerView3.setText("" + randomAns3);
             answerView4.setText("" + randomAns4);
+            gridElements[randomTag] = 0;
         } else if (gridElements[2] == 1) {
             answerView1.setText("" + randomAns2);
             answerView2.setText("" + randomAns3);
             answerView3.setText("" + correctAnswer);
             answerView4.setText("" + randomAns4);
+            gridElements[randomTag] = 0;
         } else {
             answerView1.setText("" + randomAns2);
             answerView2.setText("" + randomAns3);
             answerView3.setText("" + randomAns4);
             answerView4.setText("" + correctAnswer);
+            gridElements[randomTag] = 0;
         }
     }
 
