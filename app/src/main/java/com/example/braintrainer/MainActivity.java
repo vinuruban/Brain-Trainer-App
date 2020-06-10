@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
     //scores
     int correct = 0;
     int overall = 1;
-    CountDownTimer countDownTimer;
     androidx.gridlayout.widget.GridLayout gridLayout;
     TextView resultView;
     Button resetButton;
-    Button answerView1;
-    Button answerView2;
-    Button answerView3;
-    Button answerView4;
+    Button ansButton1;
+    Button ansButton2;
+    Button ansButton3;
+    Button ansButton4;
+    int randomTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         gridLayout =  findViewById(R.id.gridLayout);
         resetButton = (Button) findViewById(R.id.resetButton);
 
-        answerView1 = (Button) findViewById(R.id.ansButton1);
-        answerView2 = (Button) findViewById(R.id.ansButton2);
-        answerView3 = (Button) findViewById(R.id.ansButton3);
-        answerView4 = (Button) findViewById(R.id.ansButton4);
+        ansButton1 = (Button) findViewById(R.id.ansButton1);
+        ansButton2 = (Button) findViewById(R.id.ansButton2);
+        ansButton3 = (Button) findViewById(R.id.ansButton3);
+        ansButton4 = (Button) findViewById(R.id.ansButton4);
 
         generateQuestion();
         displayScore();
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         questionView.setText(n1 + " + " + n2);
 
         // Obtain a number between [0 - 3].
-        int randomTag = rand.nextInt(4);
+        randomTag = rand.nextInt(4);
 
         gridElements[randomTag] = 1;
 
@@ -86,38 +86,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (gridElements[0] == 1) {
-            answerView1.setText("" + correctAnswer);
-            answerView2.setText("" + randomAns2);
-            answerView3.setText("" + randomAns3);
-            answerView4.setText("" + randomAns4);
+            ansButton1.setText("" + correctAnswer);
+            ansButton2.setText("" + randomAns2);
+            ansButton3.setText("" + randomAns3);
+            ansButton4.setText("" + randomAns4);
             gridElements[randomTag] = 0;
         } else if (gridElements[1] == 1) {
-            answerView1.setText("" + randomAns2);
-            answerView2.setText("" + correctAnswer);
-            answerView3.setText("" + randomAns3);
-            answerView4.setText("" + randomAns4);
+            ansButton1.setText("" + randomAns2);
+            ansButton2.setText("" + correctAnswer);
+            ansButton3.setText("" + randomAns3);
+            ansButton4.setText("" + randomAns4);
             gridElements[randomTag] = 0;
         } else if (gridElements[2] == 1) {
-            answerView1.setText("" + randomAns2);
-            answerView2.setText("" + randomAns3);
-            answerView3.setText("" + correctAnswer);
-            answerView4.setText("" + randomAns4);
+            ansButton1.setText("" + randomAns2);
+            ansButton2.setText("" + randomAns3);
+            ansButton3.setText("" + correctAnswer);
+            ansButton4.setText("" + randomAns4);
             gridElements[randomTag] = 0;
         } else {
-            answerView1.setText("" + randomAns2);
-            answerView2.setText("" + randomAns3);
-            answerView3.setText("" + randomAns4);
-            answerView4.setText("" + correctAnswer);
+            ansButton1.setText("" + randomAns2);
+            ansButton2.setText("" + randomAns3);
+            ansButton3.setText("" + randomAns4);
+            ansButton4.setText("" + correctAnswer);
             gridElements[randomTag] = 0;
         }
     }
 
     public void clickAnswer(View view) {
         Button clickedButton = (Button) view;
-        String expectedAns = Integer.toString(correctAnswer);
-        String actualAns = clickedButton.getText().toString();
+        String expectedPosition = Integer.toString(randomTag);
+        String actualPosition = clickedButton.getTag().toString();
 
-        if (expectedAns.equals(actualAns)) {
+        if (expectedPosition.equals(actualPosition)) {
             resultView.setText("Correct!");
             correct++;
 
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTimer() {
-        countDownTimer = new CountDownTimer(20000, 1000) {
+        new CountDownTimer(20000, 1000) {
 
             public void onTick(long millisecondsUntilDone) {
                 TextView countDownView = (TextView) findViewById(R.id.countDownView);
@@ -169,15 +169,15 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<View> layoutButtons = gridLayout.getTouchables();
 
         if (status == false) {
-            answerView1.setEnabled(false);
-            answerView2.setEnabled(false);
-            answerView3.setEnabled(false);
-            answerView4.setEnabled(false);
+            ansButton1.setEnabled(false);
+            ansButton2.setEnabled(false);
+            ansButton3.setEnabled(false);
+            ansButton4.setEnabled(false);
         } else {
-            answerView1.setEnabled(true);
-            answerView2.setEnabled(true);
-            answerView3.setEnabled(true);
-            answerView4.setEnabled(true);
+            ansButton1.setEnabled(true);
+            ansButton2.setEnabled(true);
+            ansButton3.setEnabled(true);
+            ansButton4.setEnabled(true);
         }
     }
 
