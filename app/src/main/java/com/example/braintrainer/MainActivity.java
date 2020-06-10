@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
         gridLayout =  findViewById(R.id.gridLayout);
         resetButton = (Button) findViewById(R.id.resetButton);
 
+        answerView1 = (Button) findViewById(R.id.ansButton1);
+        answerView2 = (Button) findViewById(R.id.ansButton2);
+        answerView3 = (Button) findViewById(R.id.ansButton3);
+        answerView4 = (Button) findViewById(R.id.ansButton4);
+
         generateQuestion();
         displayScore();
         startTimer();
@@ -71,10 +76,6 @@ public class MainActivity extends AppCompatActivity {
         int randomAns3 = rand.nextInt(40) + 1;
         int randomAns4 = rand.nextInt(40) + 1;
 
-        answerView1 = (Button) findViewById(R.id.ansButton1);
-        answerView2 = (Button) findViewById(R.id.ansButton2);
-        answerView3 = (Button) findViewById(R.id.ansButton3);
-        answerView4 = (Button) findViewById(R.id.ansButton4);
 
         if (gridElements[0] == 1) {
             answerView1.setText("" + correctAnswer);
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         displayScore();
         resultView.setText("");
         resetButton.setVisibility(View.GONE);
+        generateQuestion();
     }
 
     private void alterButtons(boolean status) {
